@@ -45,25 +45,25 @@ class ContactForm(forms.ModelForm):
 
 
 class RegisterForm(UserCreationForm):
-    ...
-    first_name = forms.CharField(
+ 
+      first_name = forms.CharField(
         required=True,
         min_length=3,
     )
-    last_name = forms.CharField(
+      last_name = forms.CharField(
         required=True,
         min_length=3,
     )
-    email = forms.EmailField()
+      email = forms.EmailField()
 
-    class Meta:
+      class Meta:
         model = User
         fields = (
             'first_name', 'last_name', 'email',
             'username', 'password1', 'password2',
         )
 
-    def clean_email(self):
+      def clean_email(self):
         email = self.cleaned_data.get('email')
 
         if User.objects.filter(email=email).exists():
